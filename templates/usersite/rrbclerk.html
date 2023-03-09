@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>{{lbl}}</title>
+		<link rel = "icon" href =  
+"{% static 'images/solution.svg' %}" 
+        type = "image/x-icon"> 
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/main.css'%}" />
+		<noscript><link rel="stylesheet" href="{% static 'css/noscript.css'%}" /></noscript>
+		<style type="text/css">
+			.puzzle_main:hover{
+				color: 	#FF1493;
+				border-style: solid;
+			}
+		</style>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="/" class="logo">
+									<span class="symbol"><img src="{% static 'images/solution.svg' %}" alt="" /></span><span class="title">Increase Puzzle Speed</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="{%url 'puzzlelist' a.product%}">IBPS RRB CLERK PRELIMS</a></li>
+							<li><a href="{%url 'puzzlelist' a.rrbpo%}">IBPS RRB PO PRELIMS</a></li>
+							<li><a href="{%url 'puzzlelist' a.ibpsclerk%}">IBPS CLERK PRELIMS</a></li>
+							<li><a href="{%url 'puzzlelist' a.ibpspo%}">IBPS PO PRELIMS</a></li>
+							<li><a href="{%url 'puzzlelist' a.sbiclerk%}">SBI CLERK PRELIMS</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner" >
+							<h1>{{lbl}}</h1>
+							{%for i in cart%}
+							<a href="{%url 'puzzle' fd i.id%}" >
+
+										<div class="puzzle_main" style="width: 100%;border-width: 3px;border-style: dashed; border-radius: 10px;height: auto; margin-bottom: 30px;">
+		<p style="padding-left: 10px;margin-bottom: 5px;margin-top: 5px;"><b>{{i.numr}}. <span style="text-transform: lowercase;">{{lbl}}</span> level puzzle_{{i.numr}}. </b>  <span style="color: #32CD32;padding-left: 10px;font-weight: normal;font-size: 16px;"> 
+												 <b>[  {{i.time}}]</b>
+											</span></p>
+	</div>
+										
+						</a>
+							{%endfor%}
+							
+							</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="">
+									{%csrf_token%}
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section>
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; IBPS PUZZLE. All rights reserved</li>
+							</ul>
+						</div>
+					</footer>
+
+	
+			</div>
+
+		<!-- Scripts -->
+			
+			<script src="{% static 'js/jquery.min.js '%}"></script>
+			<script src="{% static 'js/browser.min.js '%}"></script>
+			<script src="{% static 'js/breakpoints.min.js '%}"></script>
+			<script src="{% static 'js/util.js '%}"></script>
+			<script src="{% static 'js/main.js '%}"></script>
+
+
+	</body>
+</html>

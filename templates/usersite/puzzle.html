@@ -1,0 +1,252 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PUZZLE</title>
+		<link rel = "icon" href =  
+"{% static 'images/solution.svg' %}" 
+        type = "image/x-icon"> 
+		
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{% static 'css/mainmy.css'%}" />
+		<script type="text/javascript">
+			function hideImage() { 
+			   // var path = 'path/to/the/image/logo.png'; 
+			    var img = document.getElementById('solution_img'); 
+			    //var time_state=1;
+
+			    //if (img && img.getAttribute('src').indexOf(path) > -1) { 
+			    img.style.display = 'block'; 
+			    document.getElementById('img_state').value='1';
+			    window.scrollBy(0, 800);
+    		}
+    		function nextq(){
+    			var q1 = document.getElementById('question_1');
+    			var q2 = document.getElementById('question_2');
+    			var q3 = document.getElementById('question_3');
+    			var q4 = document.getElementById('question_4');
+    			var q5 = document.getElementById('question_5');
+    			var bnex= document.getElementById('button_nx');
+    			var bsub=document.getElementById('button_sub');
+    			if (q1.style.display=='block') {
+    				q1.style.display='none';
+    				q2.style.display='block';
+    			}else if (q2.style.display=='block') {
+    				q2.style.display='none';
+    				q3.style.display='block';
+
+    			}else if (q3.style.display=='block') {
+    				q3.style.display='none';
+    				q4.style.display='block';
+
+    			}else if (q4.style.display=='block') {
+    				q4.style.display='none';
+    				q5.style.display='block';
+    				//bnex.innerHTML='Submit';
+    				bnex.style.display='none';
+    				bsub.style.display='block';
+
+    			}else{
+
+    			}
+    		}
+    		function preq(){
+    			var q1 = document.getElementById('question_1');
+    			var q2 = document.getElementById('question_2');
+    			var q3 = document.getElementById('question_3');
+    			var q4 = document.getElementById('question_4');
+    			var q5 = document.getElementById('question_5');
+    			var bnex= document.getElementById('button_nx');
+    			var bsub=document.getElementById('button_sub');
+    			if (q1.style.display=='block') {
+    				//q1.style.display='none';
+    				//q2.style.display='block';
+    			}else if (q2.style.display=='block') {
+    				q2.style.display='none';
+    				q1.style.display='block';
+
+    			}else if (q3.style.display=='block') {
+    				q3.style.display='none';
+    				q2.style.display='block';
+
+    			}else if (q4.style.display=='block') {
+    				q4.style.display='none';
+    				q3.style.display='block';
+    				
+
+    			}else if (q5.style.display=='block') {
+    				q5.style.display='none';
+    				q4.style.display='block';
+    				//bnex.innerHTML='Submit';
+    				bnex.style.display='block';
+    				bsub.style.display='none';
+
+    			}
+    			else{
+
+    			}
+    		}
+    		var c =0;
+    		var m=0;
+    		function showTime() {
+    			var a=++c;
+    			var sec;
+    			var mi;
+    			if (document.getElementById('img_state').value=='0') {
+
+    			if (a==60) {c=0;a=0;m=m+1;}
+    			if (m<10) {mi="0"+m;}else{mi=m;}
+    			if (c<10) {sec="0"+a;}else{sec=a;}
+    			
+    			document.getElementById("clock").innerHTML = mi+":"+sec;
+    			document.getElementById("clock_data").value=mi+":"+sec;
+    			}
+
+
+
+
+    			}
+    		setInterval(showTime, 1000);
+
+
+		</script>
+		
+	</head>
+	<body style="min-width: 300px;overflow: scroll;overflow-x: hidden;">
+		<div style="background-color: #696969;width: 100%;height: 40px;">
+			<h4 style=" color: white;font-weight: bold;text-align: end;padding-top: 3px;padding-right: 5px;font-size: 30px;">Timer: <span id="clock"></span></h4>
+			
+		</div>
+		
+		<div style="width: 100%;">
+
+			
+			<p style="size: 10px;font-weight: bold;">Q.{{vat}}:</p>
+			<!--eng -->
+			<p style="font: 15px;font-weight: bold; font-family: sans-serif;"  onselectstart="return false" onCopy="return false" onCut="return false" onDrag="return false" >{{puz.puzzle_eng}}</p>
+			<!--hin -->
+			<p style="font: 15px;font-weight: bold; font-family: sans-serif;" onselectstart="return false" onCopy="return false" onCut="return false" onDrag="return false" >{{puz.puzzle_hindi}}</p>
+
+			<!--quat 1 -->
+			<div style="width: 100%;">
+
+
+				<form method="post">
+				{%csrf_token%}
+
+
+				<!--          quton 1                      -->
+				<div id="question_1" style="display: block;">
+				
+				<p style="padding-top: 10px;padding-left: 15px;font-weight: bold; font-family: sans-serif;">1. {{puz.question_1}}</p>
+				<div style="width: 100%; padding-left: 10px;">
+					<input type="radio" name="op"  value="a" style="float: left;font-weight: bold; font-family: sans-serif;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">A.</span> {{puz.question1_option_1}}</p>
+					<input type="radio" name="op" value="b" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">B.</span> {{puz.question1_option_2}}</p>
+					<input type="radio" name="op" value="c" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">C.</span> {{puz.question1_option_3}}</p>
+					<input type="radio" name="op" value="d" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">D.</span> {{puz.question1_option_4}}</p>
+					<input type="radio" name="op" value="e" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">E.</span> None of this. | इनमें से कोई नहीं।</p>
+					
+				</div></div>
+				<!--         end quaton 1             -->
+
+				<!--          quton 2                      -->
+				<div id="question_2" style="display: none;">
+				
+				<p style="padding-top: 10px;padding-left: 15px;font-weight: bold; font-family: sans-serif;">2. {{puz.question_2}}</p>
+				<div style="width: 100%; padding-left: 10px;">
+					<input type="radio" name="op2"  value="a" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">A.</span> {{puz.question2_option_1}}</p>
+					<input type="radio" name="op2" value="b" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">B.</span> {{puz.question2_option_2}}</p>
+					<input type="radio" name="op2" value="c" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">C.</span> {{puz.question2_option_3}}</p>
+					<input type="radio" name="op2" value="d" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">D.</span> {{puz.question2_option_4}}</p>
+					<input type="radio" name="op2" value="e" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">E.</span> None of this. | इनमें से कोई नहीं।</p>
+					
+				</div></div>
+				<!--         end quaton 2             -->
+
+				<!--          quton 3                      -->
+				<div id="question_3" style="display: none;">
+				
+				<p style="padding-top: 10px;padding-left: 15px;font-weight: bold; font-family: sans-serif;">3. {{puz.question_3}}</p>
+				<div style="width: 100%; padding-left: 10px;">
+					<input type="radio" name="op3"  value="a" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">A.</span> {{puz.question3_option_1}}</p>
+					<input type="radio" name="op3" value="b" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">B.</span> {{puz.question3_option_2}}</p>
+					<input type="radio" name="op3" value="c" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">C.</span> {{puz.question3_option_3}}</p>
+					<input type="radio" name="op3" value="d" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">D.</span> {{puz.question3_option_4}}</p>
+					<input type="radio" name="op3" value="e" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">E.</span> None of this. | इनमें से कोई नहीं।</p>
+					
+				</div></div>
+				<!--         end quaton 3             -->
+
+				<!--          quton 4                      -->
+				<div id="question_4" style="display: none;">
+				
+				<p style="padding-top: 10px;padding-left: 15px;font-weight: bold; font-family: sans-serif;">4. {{puz.question_4}}</p>
+				<div style="width: 100%; padding-left: 10px;">
+					<input type="radio" name="op4"  value="a" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">A.</span> {{puz.question4_option_1}}</p>
+					<input type="radio" name="op4" value="b" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">B.</span> {{puz.question4_option_2}}</p>
+					<input type="radio" name="op4" value="c" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">C.</span> {{puz.question4_option_3}}</p>
+					<input type="radio" name="op4" value="d" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">D.</span> {{puz.question4_option_4}}</p>
+					<input type="radio" name="op4" value="e" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">E.</span> None of this. | इनमें से कोई नहीं।</p>
+					
+				</div></div>
+				<!--         end quaton 4             -->
+
+				<!--          quton 5                      -->
+				<div id="question_5" style="display: none;">
+				
+				<p style="padding-top: 10px;padding-left: 15px;font-weight: bold; font-family: sans-serif;">5. {{puz.question_5}}</p>
+				<div style="width: 100%; padding-left: 10px;">
+					<input type="radio" name="op5"  value="a" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">A.</span> {{puz.question5_option_1}}</p>
+					<input type="radio" name="op5" value="b" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">B.</span> {{puz.question5_option_2}}</p>
+					<input type="radio" name="op5" value="c" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">C.</span> {{puz.question5_option_3}}</p>
+					<input type="radio" name="op5" value="d" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">D.</span> {{puz.question5_option_4}}</p>
+					<input type="radio" name="op5" value="e" style="float: left;"> <p style="font-weight: bold; font-family: sans-serif;"><span style="font-weight: bold;font-size: 20px;">E.</span> None of this. | इनमें से कोई नहीं।</p>
+					
+				</div></div>
+				<input type="hidden" id="clock_data" name="time" value="00">
+				<input type="hidden" id="img_state" name="img_state" value="0">
+				<!--         end quaton 5             -->
+				<input type="submit" name="" id="button_sub" class="button button2"  style="display: none;float: right;" value="Submit">
+
+
+				<!--<a href="result" style="float: right;text-decoration: none;"><button id="button_sub" class="button button2"  style="display: none;">Submit</button></a>-->
+
+				</form>
+
+
+
+
+
+
+				<div style="float: right; padding-right: 10px;">
+					
+					<button  class="button button1" onclick="preq()"  style="float: left;">Previous</button>
+					<button id="button_nx" class="button button2" onclick="nextq()" style="display: block;"> Next </button>
+					
+					
+
+					
+				</div>
+				<div style="float: left;">
+				
+				<a onclick="hideImage()" href="javascript:void(0);" style="color: blue;padding-left: 10px;padding-top: 15px;">view solution</a></div>
+				<img id="solution_img" src="{{puz.solution_img.url}}"  alt="" style="padding-top: 100px;padding-left: 0px;display: none;" />
+			</div>
+			<!-- q1 end  -->
+			
+
+
+
+
+
+		</div>
+
+
+	</body>
+</html>

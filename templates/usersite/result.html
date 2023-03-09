@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Result</title>
+	<link rel = "icon" href =  "{% static 'images/solution.svg' %}" type = "image/x-icon"> 
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static 'css/result.css'%}" />
+		
+
+	
+		
+</head>
+<body >
+
+	<div class="container center">
+  <div class="card">
+    <h2>Analysis</h2>
+    <hr/>
+    <p style="margin-left: 10px;font-weight: bold;">Taken Time: <span style="color: blue;text-decoration: underline;">{{time}} </span></p>
+	<p style="margin-left: 10px;font-weight: bold;">Correct: <span style="color: green;text-decoration: underline;">{{right}}</span></p>
+	<p style="margin-left: 10px;font-weight: bold;">Wrong: <span style="color: red;text-decoration: underline;">{{wrong}}</span></p>
+	<p style="margin-left: 10px;font-weight: bold;">Response : <span style="color: 	#DC143C;"> {{res}}</span> </p>
+	<p style="margin-left: 10px;font-weight: bold;">Solution:</p>
+	<img src="{{sol.solution_img.url}}" style="margin-left: auto;margin-right: auto;width: 100%;max-height: 250px;" alt="">
+	<div style="width: 200px;">
+	<a href="{%url 'puzzlelist' a%}" style="text-decoration: none;"><button style="width: 90px;">Back</button></a>
+	<a href="{{next}}" style="float: right;text-decoration: none;"><button style="width : 90px;">Next</button></a></div>
+	</div>  </div>
+</div>
+
+
+	
+
+			
+
+</body>
+</html>
